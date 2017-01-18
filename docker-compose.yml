@@ -27,6 +27,9 @@ services:
       - "./:/var/www"
       - "./docker/config/php/php.ini:/usr/local/etc/php/php.ini"
       - "./docker/config/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini"
+#   tunnel for remote ssh
+    ports:
+      - "2225:22"
   phpmyadmin:
     container_name: container_pma
     image: phpmyadmin/phpmyadmin
