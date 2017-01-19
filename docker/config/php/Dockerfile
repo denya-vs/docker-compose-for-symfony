@@ -25,11 +25,8 @@ RUN echo 'root:root2' > /root/passwdfile
 RUN cat /root/passwdfile | chpasswd
 RUN sed -i 's/^#*\(PermitRootLogin\) .*/\1 yes/' /etc/ssh/sshd_config
 
-#
-ENV NOTVISIBLE "in users profile"
-RUN echo "export VISIBLE=now" >> /etc/profile
 
 EXPOSE 22
-CMD ["/usr/sbin/sshd", "-D"]
+CMD /usr/sbin/sshd -D & /usr/local/sbin/php-fpm --nodaemonize
 
 WORKDIR /var/www/web
